@@ -10,9 +10,29 @@ super(props);
          { description: 'Walk the cat', isCompleted: true },
          { description: 'Throw the dishes away', isCompleted: false },
          { description: 'Buy new dishes', isCompleted: false }
-       ]
+       ],
+newToDoDescription: ''
      };
 }
+
+handleChange(e) {
+this,setState({ newToDoDescription: e.target.value })
+}
+
+handleSubmit(e) {
+e.preventDefault();
+const newToDo = { description: this.state.newToDoDescription, isCompleted: false };
+this.setState({ todos: [...this.state.todos, newToDo], newToDoDescription: '' });
+}
+
+toggleComplete(index) {
+console.log(index);
+}
+toggleComplete(index) {
+const = this.state.todos.slice();
+const = todo = todos[index];
+todo.isCompleted = todo.isCompleted ? false : true;
+this.setState({todos: todos});
 
   render() {
     return (
@@ -20,9 +40,15 @@ super(props);
 <ul>
 {this.state.todos.map( (todo, index) =>
 <ToDo key={ index } description={ todo.description } isCompleted= {todo.isCompleted } 
+toggleComplete={ () => this.toggleComplete(index) } />
 />
 )}
 </ul>
+<form onSubmit={ (e) => this.handleSubmit(e) }>
+<input type="text" value={ this.state.newToDoDescription } onChange={ (e) => 
+this.handleChange(e) } />
+<input type="submit" />
+</form>
       </div>
     );
   }
