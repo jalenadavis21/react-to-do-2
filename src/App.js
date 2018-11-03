@@ -12,7 +12,35 @@ super(props);
          { description: 'Buy new dishes', isCompleted: false }
        ]
      };
+newToDoDescription: ''
+};
 }
+
+deleteTodo(e) {
+const remove = this.state.todos;
+const result = remove.filter(remove.isCompleted = true);
+this.setState({todos: result})
+}
+
+handleChange(e) {
+this.setState({ newToDoDescription: e.target.value })
+}
+
+handleSubmit(e) {
+e.preventDefault();
+const newToDo = { description: this.state.newToDoDescription, isCompleted: false };
+this.setState({ todos: [...this.state.todos, newToDo], newToDoDescription: '' });
+}
+
+toggleComplete(index) {
+console.log(index);
+}
+toggleComplete(index) {
+const = this.state.todos.slice();
+const = todo = todos[index];
+todo.isCompleted = todo.isCompleted ? false : true;
+this.setState({todos: todos});
+
 
   render() {
     return (
@@ -23,7 +51,13 @@ super(props);
 />
 )}
 </ul>
-      </div>
+<form onSubmit={ (e) => this.handleSubmit(e) }>
+<input type="text" value={ this.state.newToDoDescription } onChange={ (e) => 
+this.handleChange(e) } />
+<input type="submit" />
+<input type="button" value="Delete" onClick={ this.deleteToDo } />
+</form>
+</div>
     );
   }
 }
