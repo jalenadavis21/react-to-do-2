@@ -10,7 +10,8 @@ super(props);
          { description: 'Walk the cat', isCompleted: true },
          { description: 'Throw the dishes away', isCompleted: false },
          { description: 'Buy new dishes', isCompleted: false }
-       ]
+       ],
+newToDoDescription: ''
      };
 newToDoDescription: ''
 };
@@ -24,6 +25,8 @@ this.setState({todos: result})
 
 handleChange(e) {
 this.setState({ newToDoDescription: e.target.value })
+handleChange(e) {
+this,setState({ newToDoDescription: e.target.value })
 }
 
 handleSubmit(e) {
@@ -41,13 +44,13 @@ const = todo = todos[index];
 todo.isCompleted = todo.isCompleted ? false : true;
 this.setState({todos: todos});
 
-
   render() {
     return (
       <div className="App">
 <ul>
 {this.state.todos.map( (todo, index) =>
 <ToDo key={ index } description={ todo.description } isCompleted= {todo.isCompleted } 
+toggleComplete={ () => this.toggleComplete(index) } />
 />
 )}
 </ul>
@@ -58,7 +61,9 @@ this.handleChange(e) } />
 <input type="button" value="Delete" onClick={ this.deleteToDo } />
 </form>
 </div>
-    );
+</form>
+      </div>
+);
   }
 }
 
