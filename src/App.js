@@ -18,7 +18,7 @@ newToDoDescription: ''
 
 deleteTodo(e) {
 const remove = this.state.todos;
-const result = remove.filter(remove.isCompleted = true);
+const result = remove.filter(remove.isCompleted ? true: false);
 this.setState({todos: result})
 }
 
